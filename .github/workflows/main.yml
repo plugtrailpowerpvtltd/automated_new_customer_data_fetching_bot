@@ -23,7 +23,9 @@ jobs:
           pip install selenium pandas gspread oauth2client webdriver-manager python-dotenv lxml
 
       - name: Create JSON Key File
-        run: echo '${{ secrets.GCP_JSON_CONTENT }}' > credentials.json
+        env:
+          GCP_JSON: ${{ secrets.GCP_JSON_CONTENT }}
+        run: echo "$GCP_JSON" > credentials.json
 
       - name: Run Automation Script
         env:
