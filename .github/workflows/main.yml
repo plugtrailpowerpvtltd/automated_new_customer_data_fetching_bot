@@ -1,0 +1,32 @@
+name: Run My Bot
+on:
+  schedule:
+    - cron: '0 18 * * *'  # Runs daily at 11:30 PM IST (18:00 UTC)
+  workflow_dispatch:       # Manual run button
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install Libraries
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Create JSON Key File
+        run: echo '${{ secrets.GCP_JSON_CONTENT }}' > credentials.json
+
+      - name: Run Automation Script
+        env:
+          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+        run: python main1.py
