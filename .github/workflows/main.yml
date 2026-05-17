@@ -20,7 +20,7 @@ jobs:
       - name: Install Libraries
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install selenium pandas gspread oauth2client webdriver-manager python-dotenv lxml
 
       - name: Create JSON Key File
         run: echo '${{ secrets.GCP_JSON_CONTENT }}' > credentials.json
