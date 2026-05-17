@@ -1,7 +1,7 @@
 name: Run My Bot
 on:
   schedule:
-    - cron: '0 18 * * *'  # Runs daily at 11:30 PM IST (18:00 UTC)
+    - cron: '0 */2 * * *' 
   workflow_dispatch:       # Manual run button
 
 jobs:
