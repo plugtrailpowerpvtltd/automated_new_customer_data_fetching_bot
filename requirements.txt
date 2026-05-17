@@ -1,0 +1,7 @@
+selenium
+pandas
+gspread
+oauth2client
+webdriver-manager
+python-dotenv
+lxml
